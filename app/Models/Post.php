@@ -10,10 +10,6 @@ use App\Models\Tag;
 
 class Post extends Model
 {
-    public function getCreatedAtAttribute($value) {
-        return date("Y-m-d H:i:s", strtotime($value));
-    }
-
     /**
      * Indicates if the IDs are auto-incrementing.
      *
@@ -31,6 +27,10 @@ class Post extends Model
         static::creating(function ($instance) {
             $instance->id = uuid4();
         });
+    }
+
+    public function getCreatedAtAttribute($value) {
+        return date("Y-m-d H:i:s", strtotime($value));
     }
 
     public function user()

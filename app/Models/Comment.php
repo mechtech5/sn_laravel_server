@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
-{		
-		/**
+{	
+	/**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool

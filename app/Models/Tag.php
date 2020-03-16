@@ -7,7 +7,7 @@ use App\Models\Post;
 
 class Tag extends Model
 {
-		/**
+	/**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
