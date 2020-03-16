@@ -6,9 +6,11 @@ use App\Models\Post;
 use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
+		$title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+		$slug = implode('-', explode(',', strtolower($title)));
     return [
-        'user_id' => rand(1, 10),
-        'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'body' => $faker->paragraphs($nb = 3, $asText = true)
+        'title' => $title,
+        'body' => $faker->paragraphs($nb = 3, $asText = true),
+        'slug' => $slug
     ];
 });

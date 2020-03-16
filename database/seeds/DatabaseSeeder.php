@@ -15,14 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 10)->create();
+        factory(User::class, 10)->create()->each(function ($user) {
+            $posts = factory(Post::class, 3)->make();
+            $user->posts()->saveMany($posts);
+            foreach($posts as $post) {
+                $comments = factory(Comment::class, 5)->make();
+                $post->comments()->saveMany($comments);
 
-        factory(Post::class, 3)->create()->each(function ($post) {
-            $comments = factory(Comment::class, 5)->make();
-            $post->comments()->saveMany($comments);
-
-            $tags = factory(Tag::class, 5)->make();
-            $post->tags()->saveMany($tags);
-        });
+                $tags = factory(Tag::class, 3)->make();
+                $post->tags()->saveMany($tags);
+            };
+        });        
     }
 }
