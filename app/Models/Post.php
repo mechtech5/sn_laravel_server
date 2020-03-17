@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\User;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
@@ -30,7 +31,8 @@ class Post extends Model
     }
 
     public function getCreatedAtAttribute($value) {
-        return date("Y-m-d H:i:s", strtotime($value));
+        // return date("Y-m-d H:i:s", strtotime($value));
+        return Carbon::parse($value)->diffForHumans();
     }
 
     public function user()
