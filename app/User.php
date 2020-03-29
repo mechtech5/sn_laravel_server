@@ -10,51 +10,22 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'username', 'email', 'password',
+        'name', 'email', 'password',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $with = [
+        'profile'
+    ];
 
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Boot the Model.
-     */
-    public static function boot()
+    public function profile()
     {
-        parent::boot();
-
-        static::creating(function ($instance) {
-           $instance->id = uuid4();
-        });
+        return $this->hasOne('App\Models\UserProfile');
     }
 
     public function posts()

@@ -14,8 +14,8 @@ class CreateTaggablesTable extends Migration
     public function up()
     {
         Schema::create('taggables', function (Blueprint $table) {
-            $table->char('tag_id', 36);
-            $table->char('taggable_id', 36);
+            $table->foreignId('tag_id');
+            $table->foreignId('taggable_id');
             $table->string('taggable_type');
         });
     }

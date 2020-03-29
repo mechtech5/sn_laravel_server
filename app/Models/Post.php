@@ -11,30 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * Boot the Model.
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($instance) {
-            $instance->id = uuid4();
-        });
-    }
-
-    public function getCreatedAtAttribute($value) {
-        // return date("Y-m-d H:i:s", strtotime($value));
-        return Carbon::parse($value)->diffForHumans();
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);

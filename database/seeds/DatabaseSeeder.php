@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Models\UserProfile;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, 10)->create()->each(function ($user) {
+            $user->profile()->save(factory(UserProfile::class)->make());
             $posts = factory(Post::class, 3)->make();
             $user->posts()->saveMany($posts);
             foreach($posts as $post) {

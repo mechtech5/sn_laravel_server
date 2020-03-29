@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Models\Product;
 
-class CommentController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
@@ -21,22 +21,22 @@ class CommentController extends Controller
         //
     }
 
-    public function show(Comment $comment)
+    public function show(Product $product)
     {
         //
     }
 
-    public function edit(Comment $comment)
+    public function edit(Product $product)
     {
         //
     }
 
-    public function update(Comment $comment)
+    public function update(Product $product)
     {
         //
     }
 
-    public function destroy(Comment $comment)
+    public function destroy(Product $product)
     {
         //
     }
