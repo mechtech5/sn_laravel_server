@@ -17,8 +17,6 @@ class CreateUserProfilesTable extends Migration
             $table->uuid('id')->primary();
             $table->unsignedInteger('user_id');
             $table->string('username')->unique();
-            $table->string('phone')->unique()->nullable();
-            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

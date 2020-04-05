@@ -6,6 +6,11 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+    }
+
     public function index()
     {
         return Post::with('user', 'comments', 'tags')->get();

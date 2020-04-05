@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\OauthAccessToken;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,9 +20,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    protected $with = [
-        'profile'
-    ];
+
+    protected $with = [ 'profile' ];
+
+    public function OauthAcessToken(){
+        return $this->hasMany(OauthAccessToken::class);
+    }
 
     public function profile()
     {

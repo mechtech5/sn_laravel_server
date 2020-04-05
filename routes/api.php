@@ -2,11 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('login', 'Auth\ApiAuthController@login');
-Route::post('register', 'Auth\ApiAuthController@register');
-Route::post('logout', 'Auth\ApiAuthController@logout');
-Route::group(['middleware' => 'auth:api'], function(){
-  Route::get('me', 'Auth\ApiAuthController@me');
+Route::group(['middleware' => 'api', 'namespace' => 'Auth'], function () {
+		Route::post('register', 'ApiAuthController@register');
+		Route::post('login', 'ApiAuthController@login');
+		Route::get('me', 'ApiAuthController@me');
+    Route::post('logout', 'ApiAuthController@logout');
 });
 
+// Resources
 Route::apiResource('/posts', 'PostController');
+
+
+
+
